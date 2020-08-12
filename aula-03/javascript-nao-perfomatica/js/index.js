@@ -19,4 +19,5 @@ function render(){
         lis += `<li>${item}</li>`;
     });
     ul.innerHTML = lis;
+    document.title = clickArray.length;
 }
