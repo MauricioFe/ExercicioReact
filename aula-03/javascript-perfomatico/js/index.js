@@ -16,12 +16,5 @@ function render() {
     const li = document.createElement('li');
     li.textContent = item;
     ul.appendChild(li)
-    // ul.innerHTML ="";
-
-    // let lis ='';
-    // clickArray.map(item=>{
-    //     lis += `<li>${item}</li>`;
-    // });
-    // ul.innerHTML = lis;
     document.title = clickArray.length;
 }
