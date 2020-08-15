@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Users from './components/users/Users';
 
 export default class App extends Component {
   constructor() {
@@ -19,8 +20,11 @@ export default class App extends Component {
   componentDidUpdate() {
     console.log('componentDidUpdate de app.js');
   }
-  componentDidWillMount() {
+  componentWillUnmount() {
     console.log('componentDidWillMount de app.js');
+  }
+  handleShowUsers = (event) => {
+    this.setState({ showUsers: event.target.checked });
   }
   render() {
     const { users, showUsers } = this.state;
@@ -29,13 +33,13 @@ export default class App extends Component {
         <div className="switch">
           <label>
             Mostrar usuarios
-          <input type="checkbox" />
+          <input type="checkbox" onChange={this.handleShowUsers} />
             <span className="lever"></span>
           </label>
         </div>
         <hr />
-        <div>Users</div>
-        {/* {JSON.stringify(users)} */}
+        {/*se showUsers for true ele mostra o conteudo na div*/}
+        {showUsers && <Users users={users}/>}
       </div>
     );
   }
