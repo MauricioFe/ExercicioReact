@@ -9,33 +9,61 @@ export default class App extends Component {
 
     this.state = {
       allCountries: [],
-      filterCountries: []
+      filter: '',
+      filteredCountries: [],
+      filteredPopulation: 0,
     }
   }
   async componentDidMount() {
     const res = await fetch('https://restcountries.eu/rest/v2/all');
     const json = await res.json();
 
-    const allCountries = json.map(({name, numericCode, flag, population}) =>{
-        return{
-          id: numericCode,
-          name,
-          flag,
-          population
-        };
+    const allCountries = json.map(({ name, numericCode, flag, population }) => {
+      return {
+        id: numericCode,
+        name,
+        filterName: name.toLowerCase(),
+        flag,
+        population
+      };
     });
+   const filteredPopulation = this.calculateTotalPopulationFrom(allCountries);
     this.setState({
-      allCountries: allCountries,
+      allCountries,
+      filteredCountries: Object.assign([], allCountries),
+      filteredPopulation,
     })
   }
+  handleChangeFilter = (newFilter) => {
+    this.setState({
+      filter: newFilter
+    });
+    const filterLowerCase = newFilter.toLowerCase();
+    const filteredCountries = this.state.allCountries.filter(country => {
+      return country.filterName.includes(filterLowerCase);
+    })
+    const filteredPopulation = this.calculateTotalPopulationFrom(filteredCountries)
+    this.setState({
+      filteredCountries,
+      filteredPopulation
+    });
+  }
+  calculateTotalPopulationFrom = (countries) =>{
+    const totalPopulation = countries.reduce((accumulator, current)=>{
+      return accumulator + current.population;
+    },0);
+    return totalPopulation;
+  }
   render() {
-    const { allCountries } = this.state;
+    const { filteredCountries, filter, filteredPopulation} = this.state;
     return (
       <div className="container">
-        <h1> React Countries</h1>
-        <Header/>
-        <Countries countries={allCountries}/>
+        <h1 className="center"> React Countries</h1>
+        <Header filter={filter} totalPopulation={filteredPopulation} countryCount={filteredCountries.length} onChangeFilter={this.handleChangeFilter} />
+        <Countries countries={filteredCountries} />
       </div>
     )
   }
 }
+
+
