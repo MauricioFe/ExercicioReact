@@ -8,3 +8,7 @@ rcc é um comando para criar uma classe bem rápido.
 
 No jsx não escrevemos class para referenciar uma classe do css e sim o atrr className com
 ele conseguimos criar classes e estilizar no arquivo css.
+O this.state referencia o stado da nossa aplicação e nele conseguimos criar propriedades
+e manipular valores e usar no DOM. mas não podemos alterar essas propriedades de uma forma
+convencional, precisamos do setState e nele podemos manipular o nosso this.state. Lembra
+muito os geters e seters.
