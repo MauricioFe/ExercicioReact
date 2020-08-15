@@ -1,0 +1,7 @@
+O comando import serve para que possamos referenciar algum módulo e arquivo do projeto.
+Quando importamos sem chaves é o modulo principal, quando colocamos chaves são modulos 
+auxliares. O export é para deixar nosso arquivo disponível para ser usado em outros 
+arquivos. Nós podemos exportar o módulo principal com o default, ou usando chaves para 
+modulos auxiliares.
+
+rcc é um comando para criar uma classe bem rápido.
