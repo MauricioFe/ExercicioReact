@@ -1,0 +1,6 @@
+Ciclo de vida das Classes Components.
+
+os principais métodos do ciclo de vida são:
+-O método componentDidMount;
+-O método componentDidUpdate;
+-O método componentWillUnmount;
