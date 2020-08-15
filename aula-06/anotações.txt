@@ -1,6 +1,6 @@
 Ciclo de vida das Classes Components.
 
 os principais métodos do ciclo de vida são:
--O método componentDidMount;
+-O método componentDidMount: É um método muito bom para realizar requisições http porque ele é executado apenas uma vez;
 -O método componentDidUpdate;
 -O método componentWillUnmount;
