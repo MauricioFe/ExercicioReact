@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import css from './counter.module.css';
 import IncrementButton from './IncrementButton';
 import DecrementButton from './DecrementButton';
+import Value from './Value';
+import Steps from './Steps';
 export default class Counter extends Component {
     constructor() {
         super();
@@ -22,10 +24,10 @@ export default class Counter extends Component {
         const { currentCounter, steps } = this.state;
         return (
             <div className={css.counterContainer}>
-                <DecrementButton onIncrement={this.handleButtonClick} />
-                <span className={css.counterValue}>{currentCounter}</span>
+                <DecrementButton onDecrement={this.handleButtonClick} />
+                <Value value={currentCounter}/>
                 <IncrementButton onIncrement={this.handleButtonClick} />
-                <span className={css.counterValue}>({steps})</span>
+               <Steps steps={steps}/>
             </div>
         )
     }
