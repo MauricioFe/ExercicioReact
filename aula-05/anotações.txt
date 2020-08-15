@@ -12,3 +12,6 @@ O this.state referencia o stado da nossa aplicação e nele conseguimos criar pr
 e manipular valores e usar no DOM. mas não podemos alterar essas propriedades de uma forma
 convencional, precisamos do setState e nele podemos manipular o nosso this.state. Lembra
 muito os geters e seters.
+
+Components com estado compartilhado e componentes com estado isolado: O compartilhado eu mexo no componente
+pai e manipulo todos os filhos. O isolado concentra em um componente separado 
