@@ -5,3 +5,6 @@ arquivos. Nós podemos exportar o módulo principal com o default, ou usando cha
 modulos auxiliares.
 
 rcc é um comando para criar uma classe bem rápido.
+
+No jsx não escrevemos class para referenciar uma classe do css e sim o atrr className com
+ele conseguimos criar classes e estilizar no arquivo css.
