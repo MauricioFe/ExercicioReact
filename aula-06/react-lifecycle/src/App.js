@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Users from './components/users/Users';
+import Toggle from './components/toggle/Toggle';
 
 export default class App extends Component {
   constructor() {
@@ -17,26 +18,15 @@ export default class App extends Component {
       users: json.results
     });
   }
-  componentDidUpdate() {
-    console.log('componentDidUpdate de app.js');
-  }
-  componentWillUnmount() {
-    console.log('componentDidWillMount de app.js');
-  }
-  handleShowUsers = (event) => {
-    this.setState({ showUsers: event.target.checked });
+  handleShowUsers = (isChecked) => {
+    this.setState({ showUsers: isChecked});
   }
   render() {
     const { users, showUsers } = this.state;
     return (
       <div>
-        <div className="switch">
-          <label>
-            Mostrar usuarios
-          <input type="checkbox" onChange={this.handleShowUsers} />
-            <span className="lever"></span>
-          </label>
-        </div>
+        <h3>React Life Cycle</h3>
+        <Toggle description="Mostrar Usuarios" enabled={showUsers} onToggle={this.handleShowUsers} />
         <hr />
         {/*se showUsers for true ele mostra o conteudo na div*/}
         {showUsers && <Users users={users}/>}
