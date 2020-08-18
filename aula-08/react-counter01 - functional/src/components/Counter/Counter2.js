@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import css from './counter.module.css';
 import IncrementButton from './IncrementButton';
 import DecrementButton from './DecrementButton';
