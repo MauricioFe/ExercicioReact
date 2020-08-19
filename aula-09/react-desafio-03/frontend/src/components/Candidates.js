@@ -6,12 +6,12 @@ export default function Candidates({ candidates }) {
     return (
         <div>
             {
-                candidates.map(candidate => {
+                candidates.map((candidate, index) => {
                     const { id } = candidate;
                     return (
                         <div className="row">
                             <Card key={id}>
-                                <Cadidate candidate={candidate} />
+                                <Cadidate candidate={candidate} position={index +1}/>
                             </Card>
                         </div>
                     );
