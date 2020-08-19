@@ -25,7 +25,7 @@ export default class App extends Component {
   render() {
     const { candidates } = this.state;
     if (candidates.length === 0) {
-      return <Spinner description="Carregando"/>
+      return <Spinner description="Carregando..."/>
     }
     return (
       <div className="container">

@@ -1,5 +1,4 @@
 import React from 'react'
-import Card from './Card'
 import Position from './Position';
 import Picture from './Picture';
 import Info from './Info';
