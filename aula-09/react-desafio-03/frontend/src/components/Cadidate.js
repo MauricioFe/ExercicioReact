@@ -7,8 +7,7 @@ import Votes from './Votes';
 import Percentage from './Percentage';
 import Popularity from './Popularity';
 import css from './candidate.module.css'
-import { formatNumber, formatPercentage } from '../Helpers/formatHelpers';
-export default function Cadidate({ candidate, position }) {
+export default function Cadidate({ previousVote,candidate, position, previousPercentage }) {
     const { id, name, votes, percentage, popularity } = candidate;
     const imageSource = `${id}.jpg`
     return (
@@ -17,8 +16,8 @@ export default function Cadidate({ candidate, position }) {
             <Picture imageSource={imageSource} description={name} />
             <Info>
                 <Name>{name}</Name>
-                <Votes>{formatNumber(votes)}</Votes>
-                <Percentage>{formatPercentage(percentage)}</Percentage>
+                <Votes value={votes} previous={previousVote}/>
+                <Percentage previous={previousPercentage} value={percentage}/>
                 <Popularity value={popularity} />
             </Info>
 
