@@ -1,0 +1,10 @@
+React Hooks
+Criados em 2018 com a ideia de uma escrita mais declarativa com clousures e array destructuring;
+Permite a utilização de estado em Functional Components. O useEffect serve para substituir os métodos do classe componente
+o useEffect é o efeito colateral de sincronizar o componente conforme as alterações.
+useEffect permite utilizar um parâmetro extra, conhecido como array de depêndencias.
+Quando não há parametro, useEffect é invocado após qualquer atulização semelhante a componentDidUpdate.
+Quando o parâmtro é [], useEffect é invocado apenas uma vez - semelhante a componentDidMount.
+Quando o parâmetro está preenchido com [state1, state2, etc], useEffect é invocado após  a atulização de qualquer estado.
+
+Quando há retorno na funcção - useEffect utiliza o retorno para enviar recursos - semelhante ao componentDidUnmount.
