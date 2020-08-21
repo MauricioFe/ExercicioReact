@@ -1,0 +1,21 @@
+.flag{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    margin-right: 10px;
+}
+.flexRow{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.flexContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexItem{
+    width: 45%;
+    margin-right:5% ;
+}
