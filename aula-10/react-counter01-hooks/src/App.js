@@ -1,17 +1,10 @@
-import React, { Component, Fragment, useState } from 'react';
+import React, {Fragment, useState } from 'react';
 import Counter from './components/Counter/Counter';
 import Counter2 from './components/Counter/Counter2';
 import Band from './components/Band';
 export default function App(){
 const [currentCounter, setCurrentCounter] = useState(3);
 const [steps, setSteps] = useState(0);
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     currentCounter: 3,
-  //     steps: 0,
-  //   }
-  // }
   const handleCount = (clickType) => {
       setCurrentCounter(clickType === '+' ? currentCounter + 1 : currentCounter - 1);
       setSteps(steps + 1)
