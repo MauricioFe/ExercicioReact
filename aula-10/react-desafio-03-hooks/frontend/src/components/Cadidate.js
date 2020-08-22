@@ -20,7 +20,6 @@ export default function Cadidate({ previousVote,candidate, position, previousPer
                 <Percentage previous={previousPercentage} value={percentage}/>
                 <Popularity value={popularity} />
             </Info>
-
         </div>
     )
 }

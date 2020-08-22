@@ -45,12 +45,14 @@ async function getAllGrades() {
     let allGradeTypes = new Set();
     grades.forEach(grade => allGradeTypes.add(grade.type));
     allGradeTypes = Array.from(allGradeTypes);
+
     let maxId = -1;
-    grades.forEach(({id}) =>{
-        if(id > maxId){
-            maxId =id;
+    grades.forEach(({ id }) => {
+        if (id > maxId) {
+            maxId = id;
         }
-    })
+    });
+
     let nextId = maxId + 1;
     const allCombinations = [];
     allStudents.forEach(student => {
@@ -64,6 +66,7 @@ async function getAllGrades() {
             });
         });
     });
+
     allCombinations.forEach(({ student, subject, type }) => {
         const hasItem = grades.find(grade => {
             return grade.subject === subject && grade.student === student && grade.type === type;
@@ -90,4 +93,28 @@ async function getAllGrades() {
     return grades;
 }
 
-export { getAllGrades };
+async function insertGrades(grade) {
+    const response = await axios.post(grade);
+    return response.data.id;
+}
+
+
+async function updateGrades(grade) {
+    const response = await axios.put(grade);
+    return response.data;
+}
+
+async function deleteGrades(grade) {
+    const response = await axios.delete(`${API_URL}/${grade.id}`);
+    return response.data;
+}
+async function getValidationFromGradeType(gradeType) {
+    const gradeValidation = GRADE_VALIDATION.find(item => item.gradeType === gradeType);
+    const { minValue, maxValue } = gradeValidation
+    return {
+        minValue,
+        maxValue
+    }
+}
+
+export { getAllGrades, insertGrades, updateGrades, deleteGrades, getValidationFromGradeType };
