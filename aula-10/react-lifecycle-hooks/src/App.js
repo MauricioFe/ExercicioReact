@@ -15,7 +15,7 @@ export default function App() {
     fetchUsers();
   }, [])
   const handleShowUsers = (isChecked) => {
-    this.setState({ showUsers: isChecked });
+    setShowUsers(isChecked);
   }
 
   return (
