@@ -25,9 +25,14 @@ const GRADE_VALIDATION = [
 async function getAllGrades() {
     const res = await axios.get(API_URL);
     const grades = res.data.grades.map(grade =>{
+        const {student, subject, type} = grade;
         return{
-            ...grade
-        }
+            ...grade,
+            studentLowerCase: student.toLowerCase(),
+            subjectLowerCase: subject.toLowerCase(),
+            typeLoweCase: type.toLowerCase(),
+            isDeleted:false,
+        };
     })
     return grades;
 }
