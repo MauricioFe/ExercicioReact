@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import ProjetoBase from './components/ProjetoBase/ProjetoBase';
 
-export default class App extends Component {
-  render() {
-    return <ProjetoBase />;
-  }
+export default function App() {
+    return <h1>Hello World</h1>;
 }
