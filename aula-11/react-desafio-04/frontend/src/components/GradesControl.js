@@ -1,4 +1,5 @@
 import React from 'react'
+import Action from './Action';
 
 export default function GradesControl({ grades, onDelete, onPersist }) {
     const tableGrades = [];
@@ -28,19 +29,27 @@ export default function GradesControl({ grades, onDelete, onPersist }) {
         subject: currentSubject,
         grades: currentGrades
     });
+    const handleActionClick = (id, type) => {
+        console.log(id);
+        console.log(type);
+    }
     return (
         <div className='container'>
             {tableGrades.map((tableGrade) => {
                 const { id, grades } = tableGrade;
+
+                const finalGrade = grades.reduce((acc, curr) => acc + curr.value, 0);
+                const gradeStyle = finalGrade >= 70 ? styles.goodGrade : styles.badGrade;
+
                 return (
                     <table className='striped' key={id}>
                         <thead>
                             <tr>
-                                <th style={{width: '20%'}}>Aluno</th>
-                                <th style={{width: '20%'}}>Disciplina</th>
-                                <th style={{width: '20%'}}>Avaliação</th>
-                                <th style={{width: '20%'}}>Nota</th>
-                                <th style={{width: '20%'}}>&nbsp;</th>
+                                <th style={{ width: '20%' }}>Aluno</th>
+                                <th style={{ width: '20%' }}>Disciplina</th>
+                                <th style={{ width: '20%' }}>Avaliação</th>
+                                <th style={{ width: '20%' }}>Nota</th>
+                                <th style={{ width: '20%' }}>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -50,14 +59,27 @@ export default function GradesControl({ grades, onDelete, onPersist }) {
                                         <td>{student}</td>
                                         <td>{subject}</td>
                                         <td>{type}</td>
-                                        <td>{value}</td>
-                                        <td>&nbsp;</td>
+                                        <td>{isDeleted ? '-' : value}</td>
+                                        <td>
+                                            <div>
+                                                <Action onActionClick={handleActionClick} id={id} type={isDeleted ? 'add' : 'edit'} />
+                                                {!isDeleted && <Action onActionClick={handleActionClick} id={id} type='delete' />}
+                                            </div>
+                                        </td>
                                     </tr>
                                 );
                             })}
                         </tbody>
                         <tfoot>
-
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td style={{ textAlign: 'right' }}>
+                                    <strong>Total</strong>
+                                </td>
+                                <td><span style={gradeStyle}>{finalGrade}</span></td>
+                            </tr>
                         </tfoot>
                     </table>
                 );
@@ -65,3 +87,17 @@ export default function GradesControl({ grades, onDelete, onPersist }) {
         </div>
     )
 }
+const styles = {
+    goodGrade: {
+        fontWeight: 'bold',
+        color: 'green',
+    },
+    badGrade: {
+        fontWeight: 'bold',
+        color: 'red',
+    },
+    table:{
+        margin: '20px',
+        padding: '10px'
+    }
+};
