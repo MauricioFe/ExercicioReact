@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as api from "./api/apiService";
 import Spinner from './components/Spinner';
 import GradesControl from './components/GradesControl';
+import ModalGrade from './components/ModalGrade';
 
 const { getAllGrades, insertGrades, updateGrades, deleteGrades, getValidationFromGradeType } = api;
 export default function App() {
@@ -29,15 +30,16 @@ export default function App() {
         }
     }
     const handlePersist = (grade) => {
-       setSelectedGrade(grade);
-       setIsModalOpen(true);
+        setSelectedGrade(grade);
+        setIsModalOpen(true);
     }
 
     return (
         <div>
             <h1 className='center'>Controle de notas</h1>
             {allGrades.length > 0 && <GradesControl grades={allGrades} onDelete={handleDelete} onPersist={handlePersist} />}
-            {allGrades.length == 0 && <Spinner description="Carregando notas..." />}
+            {allGrades.length === 0 && <Spinner description="Carregando notas..." />}
+            {isModalOpen && <ModalGrade />}
         </div>
     );
 }
