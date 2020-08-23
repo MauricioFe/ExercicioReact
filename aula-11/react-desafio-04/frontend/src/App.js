@@ -21,7 +21,7 @@ export default function App() {
     const handleDelete = async (gradeToDelete) => {
         const isDeleted = await deleteGrades(gradeToDelete);
         if (isDeleted) {
-            const deletedGradeIndex = allGrades.findIndex(grade => grade.id === grades.id);
+            const deletedGradeIndex = allGrades.findIndex(grade => grade.id === gradeToDelete.id);
             const newGrades = Object.assign([], allGrades);
             newGrades[deletedGradeIndex].isDeleted = true;
             newGrades[deletedGradeIndex].value = 0;

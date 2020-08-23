@@ -65,7 +65,7 @@ export default function GradesControl({ grades, onDelete, onPersist }) {
                                         <td>
                                             <div>
                                                 <Action onActionClick={handleActionClick} id={id} type={isDeleted ? 'add' : 'edit'} />
-                                                {!isDeleted && <Action onActionClick={handleActionClick} id={id} type='delete' />}
+                                                {!isDeleted && <Action onActionClick={handleActionClick} id={id} type='delete'/>}
                                             </div>
                                         </td>
                                     </tr>
