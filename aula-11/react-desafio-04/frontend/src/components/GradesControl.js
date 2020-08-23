@@ -33,6 +33,7 @@ export default function GradesControl({ grades, onDelete, onPersist }) {
         const grade = grades.find(grade => grade.id === id);
       if(type === 'delete'){
           onDelete(grade);
+          return;
       }
       onPersist(grade);
     }

@@ -94,16 +94,14 @@ async function getAllGrades() {
 }
 
 async function insertGrades(grade) {
-    const response = await axios.post(grade);
+    const response = await axios.post(API_URL, grade);
     return response.data.id;
-}
-
-
-async function updateGrades(grade) {
-    const response = await axios.put(grade);
+  }
+  
+  async function updateGrades(grade) {
+    const response = await axios.put(API_URL, grade);
     return response.data;
-}
-
+  }
 async function deleteGrades(grade) {
     const response = await axios.delete(`${API_URL}/${grade.id}`);
     return response.data;

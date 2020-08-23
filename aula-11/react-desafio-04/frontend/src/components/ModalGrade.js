@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import * as api from "../api/apiService";
-const { getAllGrades, insertGrades, updateGrades, deleteGrades, getValidationFromGradeType } = api;
+const { getValidationFromGradeType } = api;
 Modal.setAppElement('#root')
 export default function ModalGrade({ onSave, onClose, selectedGrade }) {
     const { id, student, value, type, subject } = selectedGrade;
@@ -39,11 +39,20 @@ export default function ModalGrade({ onSave, onClose, selectedGrade }) {
             onClose(null);
         }
     }
-    const handleFormSubmit = (event) => { };
-    const handleGradeChange = ({ target }) => {
-        setGradeValue(+target.value)
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        const formData = {
+            id,
+            newValue: gradeValue,
+        };
+        onSave(formData)
     };
-    const handleClose = () => {
+
+
+    const handleGradeChange = ({ target }) => {
+        setGradeValue(+target.value)//o mais converte para inteiro
+    };
+    const handleModalClose = () => {
         onClose(null);
     };
     return (
@@ -51,7 +60,7 @@ export default function ModalGrade({ onSave, onClose, selectedGrade }) {
             <Modal isOpen={true} >
                 <div style={styles.flexRow}>
                     <span style={styles.title}>Manutenção de notas</span>
-                    <button className="waves-effect waves-light btn red dark-4" onClick={handleClose}>X</button>
+                    <button className="waves-effect waves-light btn red dark-4" onClick={handleModalClose}>X</button>
                 </div>
                 <form onSubmit={handleFormSubmit}>
                     <div className="input-field">
@@ -81,7 +90,7 @@ export default function ModalGrade({ onSave, onClose, selectedGrade }) {
                         </label>
                     </div>
                     <div style={styles.flexRow}>
-                        <button className="waves-effect waves-light btn" disabled={errorMessage.trim() !== ''}>Salvar</button>
+                        <button className="waves-effect waves-light btn" disabled={errorMessage.trim() !== ''} onClick={handleFormSubmit}>Salvar</button>
                         <span style={styles.error}>{errorMessage}</span>
                     </div>
                 </form>
@@ -101,7 +110,7 @@ const styles = {
         fontSize: '1.6rem',
         fontWeight: 'bold',
     },
-    error:{
+    error: {
         fontSize: '1.2rem',
         fontWeight: 'bold',
         color: 'red'

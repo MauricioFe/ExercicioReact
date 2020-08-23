@@ -4,7 +4,7 @@ import Spinner from './components/Spinner';
 import GradesControl from './components/GradesControl';
 import ModalGrade from './components/ModalGrade';
 
-const { getAllGrades, insertGrades, updateGrades, deleteGrades, getValidationFromGradeType } = api;
+const { getAllGrades, insertGrades, updateGrades, deleteGrades } = api;
 export default function App() {
     const [allGrades, setAllGrades] = useState([]);
     const [selectedGrade, setSelectedGrade] = useState({});
@@ -33,8 +33,22 @@ export default function App() {
         setSelectedGrade(grade);
         setIsModalOpen(true);
     }
-    const handlePersistData = (grade) => {
+    const handlePersistData = async (formData) => {
+        const { id, newValue } = formData;
 
+        const newGrades = Object.assign([], allGrades);
+    
+        const gradeToPersist = newGrades.find((grade) => grade.id === id);
+        gradeToPersist.value = newValue;
+    
+        if (gradeToPersist.isDeleted) {
+          gradeToPersist.isDeleted = false;
+          await insertGrades(gradeToPersist);
+        } else {
+          await updateGrades(gradeToPersist);
+        }
+    
+        setIsModalOpen(false);
     }
     const handleClose = () => {
         setIsModalOpen(false);
