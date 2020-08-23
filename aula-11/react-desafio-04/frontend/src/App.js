@@ -32,6 +32,12 @@ export default function App() {
     const handlePersist = (grade) => {
         setSelectedGrade(grade);
         setIsModalOpen(true);
+    }    
+    const handlePersistData = (grade) => {
+
+    }    
+    const handleClose = () => {
+
     }
 
     return (
@@ -39,7 +45,7 @@ export default function App() {
             <h1 className='center'>Controle de notas</h1>
             {allGrades.length > 0 && <GradesControl grades={allGrades} onDelete={handleDelete} onPersist={handlePersist} />}
             {allGrades.length === 0 && <Spinner description="Carregando notas..." />}
-            {isModalOpen && <ModalGrade />}
+            {isModalOpen && <ModalGrade onSave={handlePersistData} onClose={handleClose} selectedGrade={selectedGrade} />}
         </div>
     );
 }

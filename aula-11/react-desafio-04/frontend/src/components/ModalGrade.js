@@ -1,9 +1,27 @@
-import React from 'react'
-
-export default function ModalGrade() {
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import * as api from "./api/apiService";
+const { getAllGrades, insertGrades, updateGrades, deleteGrades, getValidationFromGradeType } = api;
+Modal.setAppElement('#root')
+export default function ModalGrade({ onSave, onClose, selectedGrade }) {
+    const [gradeValue, setGradeValue] = useState(selectedGrade.value);
+    const [gradeValidation, setGradeValidation] = useState([]);
+    const [errorMessage, setErrorMessage] = useState([]);
+    useEffect(() => {
+        const validation = getValidationFromGradeType(type);
+        setGradeValidation(validation);
+    }, [type]);
+    useEffect(() => {
+        const { minValue, maxValue } = gradeValidation;
+        if (gradeValue < minValue || gradeValue > maxValue) {
+            setErrorMessage(`O valor da nota deve ser entre ${minValue} e ${maxValue} (inclusive)`);
+            return;
+        };
+       setErrorMessage('');
+    }, [gradeValue, gradeValidation]);
     return (
         <div>
-            ModalGrade
+            <Modal isOpen={true} />
         </div>
     )
 }
