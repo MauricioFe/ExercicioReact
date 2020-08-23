@@ -32,12 +32,12 @@ export default function App() {
     const handlePersist = (grade) => {
         setSelectedGrade(grade);
         setIsModalOpen(true);
-    }    
+    }
     const handlePersistData = (grade) => {
 
-    }    
+    }
     const handleClose = () => {
-
+        setIsModalOpen(false);
     }
 
     return (
